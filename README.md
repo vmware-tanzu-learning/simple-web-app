@@ -12,6 +12,7 @@ It provides the following endpoints:
 * `/hello` - responds with a canned greeting message, which
   can be over-ridden using the `GREETING_MESSAGE` environment
   variable.
+* `/env` - responds with a JSON map of current environment variable settings
 * `/echo` - a GET to this with a query-parameter of `message`
   echoes back the supplied message
 * `/echo` - a POST to this echoes back the body contents
