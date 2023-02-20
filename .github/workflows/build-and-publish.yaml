@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Setup Environment
         run: |
           # GITHUB_ENV file is sourced by subsequent steps
@@ -22,10 +22,14 @@ jobs:
             echo "ENV=prod" >> $GITHUB_ENV
           fi
       - name: Install JDK
-        run: apt update && apt install -y openjdk-17-jdk
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'gradle'
       - name: Build Image
         run: |
-          ./gradlew buildBootImage -Pversion=$VERSION
+          ./gradlew buildBootImage -Pversion=$VERSION --no-daemon
       - name: Tag Image
         run: |
           docker tag simple-web-app:$VERSION ghcr.io/vmware-tanzu-learning/simple-web-app:$VERSION
