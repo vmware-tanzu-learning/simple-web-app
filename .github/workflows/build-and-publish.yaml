@@ -5,8 +5,8 @@ on:
 
 jobs:
   build:
-    name: Release
-    runs-on: eclipse-temurin:17
+    name: Build and Publish Release
+    runs-on: ubuntu-20.04
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
@@ -21,8 +21,8 @@ jobs:
           else
             echo "ENV=prod" >> $GITHUB_ENV
           fi
-      - name: Install Tools
-        run: apt update && apt install -y docker git
+      - name: Install JDK
+        run: apt update && apt install -y openjdk-17-jdk
       - name: Build Image
         run: |
           ./gradlew buildBootImage -Pversion=$VERSION
