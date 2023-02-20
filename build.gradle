@@ -18,6 +18,11 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
+tasks.named("bootBuildImage") {
+    // Workaround for NPE - see https://github.com/oracle/graal/issues/4757
+    environment["BP_NATIVE_IMAGE_BUILD_ARGUMENTS"] = "-H:-UseContainerSupport"
+}
+
 tasks.named('test') {
     useJUnitPlatform()
 }
