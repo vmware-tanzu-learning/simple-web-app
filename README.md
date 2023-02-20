@@ -17,3 +17,6 @@ It provides the following endpoints:
   echoes back the supplied message
 * `/echo` - a POST to this echoes back the body contents
 * `/actuator` - exposes the full range of actuator endpoints
+
+The liveness and readiness endpoints are also exposed on
+`/livez` and `/readyz`, respectively.
