@@ -6,7 +6,6 @@ plugins {
 }
 
 group = 'com.vmware.tanzu'
-version = '1.0'
 sourceCompatibility = '17'
 
 repositories {
