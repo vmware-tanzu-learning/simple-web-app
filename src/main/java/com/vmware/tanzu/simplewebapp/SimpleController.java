@@ -17,7 +17,7 @@ public class SimpleController {
 
     @GetMapping("/")
     public String ok(@Value("${ok.message:OK}") String message) {
-        logger.info("Requested / requested");
+        logger.info("Requested /");
         return message;
     }
 
