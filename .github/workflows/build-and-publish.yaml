@@ -14,13 +14,6 @@ jobs:
         run: |
           # GITHUB_ENV file is sourced by subsequent steps
           echo "VERSION=${{ github.event.release.tag_name }}" >> $GITHUB_ENV
-          # ENV is 'beta' if it's a pre-release or contains 'beta' in name
-          if [[ "${{ github.event.release.prerelease }}" == "true" || "${{ github.event.release.tag_name }}" =~ .*beta.* ]]
-          then
-            echo "ENV=beta" >> $GITHUB_ENV
-          else
-            echo "ENV=prod" >> $GITHUB_ENV
-          fi
       - name: Install JDK
         uses: actions/setup-java@v3
         with:
